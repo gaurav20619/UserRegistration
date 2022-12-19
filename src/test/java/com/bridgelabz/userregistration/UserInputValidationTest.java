@@ -55,4 +55,31 @@ public class UserInputValidationTest {
         boolean result = userInputValidation.isValidMobileNumber("90-9905459253");
         Assert.assertEquals(false, result);
     }
+    @Test
+    public void givenPassword_WhenValid_ShouldReturnTrue() {
+    	UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result =userInputValidation.isValidPassword("P@ssw0rd");
+        Assert.assertEquals(true, result);
+    }
+
+    @Test
+    public void givenPassword_WithoutCapitalLetter_ShouldReturnFalse() {
+    	UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result = userInputValidation.isValidPassword("hgsuyds5ndj@");
+        Assert.assertEquals(false, result);
+    }
+
+    @Test
+    public void givenPassword_WithoutNumericValue_ShouldReturnFalse() {
+    	UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result = userInputValidation.isValidPassword("bsdj@HhcsBB");
+        Assert.assertEquals(false, result);
+    }
+
+    @Test
+    public void givenPassword_WithoutSplChar_ShouldReturnFalse() {
+    	UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result = userInputValidation.isValidPassword("Pvhs5665vhj");
+        Assert.assertFalse( result);
+    }
 }
