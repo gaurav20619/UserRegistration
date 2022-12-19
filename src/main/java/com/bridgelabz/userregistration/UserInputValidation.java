@@ -3,55 +3,50 @@ package com.bridgelabz.userregistration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UserInputValidation {
-    // Creating isValidFirstName method which will return boolean 
-    // to validate the first name given by user using regex
-	
-	public boolean isValidFirstName(String firstName) {
-	    // regex pattern to check the firstName
-        String firstNameRegex = "[A-Z]{1}[a-z]{2,}";  
-	    Pattern pattern = Pattern.compile(firstNameRegex);
-	    Matcher matcher = pattern.matcher(firstName);
-	    return matcher.matches();
+import exceptions.InvalidEmailException;
+import exceptions.InvalidFirstNameException;
+import exceptions.InvalidLastNameException;
+import exceptions.InvalidMobileNumberException;
+import exceptions.InvalidPasswordException;
+
+public class UserInputValidation  {
+    @FunctionalInterface
+    public interface Validate {
+        // Declaring an Abstract method
+        boolean validate(String input);
     }
-        // Creating isValidLastName method to validate the last name given by user using regex
-	    public boolean isValidLastName(String lastName) {
-	        String firstNameRegex = "[A-Z]{1}[a-z]{2,}";
 
-	        Pattern pattern = Pattern.compile(firstNameRegex);
+    //method validateFirstName to validate first name using regex using lambda function
+    //method return - Validate type
 
-	        Matcher matcher = pattern.matcher(lastName);
-
-	        return matcher.matches();
-
-	}
-     // Creating isValidEmail method  to validate the email given by user using regex
-
-     public boolean isValidEmail(String email) {
-
-        String emailRegex = "^[a-zA-Z0-9_+-]+(?:\\.[a-zA-Z0-9_+-]+)*@" +
-                "([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}" +
-                "(?:(\\.([A-Za-z]{2})))?$";;
-
-        Pattern pattern = Pattern.compile(emailRegex);
-
-        Matcher matcher = pattern.matcher(email);
-
-        return matcher.matches();
+    public static Validate validateFirstName() {
+        return firstName -> firstName.matches("^[A-Z]{1}[a-z]{2,}$");
     }
-    //Creating isValidMobileNumber method to validate the mobile format given by user using regex
-    public boolean isValidMobileNumber(String mobileNumber) {
-        String mobileNumberRegex = "^[1-9]{2}[\\s][0-9]{10}$";
-        Pattern pattern = Pattern.compile(mobileNumberRegex);
-        Matcher matcher = pattern.matcher(mobileNumber);
-        return matcher.matches();
+
+    // method validateLastName to validate last name using regex using lambda function
+    // Validate type
+    public static Validate validateLastName() {
+        return lastName -> lastName.matches("^[A-Z]{1}[a-z]{2,}$");
     }
-   //Creating isValidPassword method to validate the password given by user using regex
-   public boolean isValidPassword(String password) {
-    System.out.println(password);
-    String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_+=-]).{8,}$";
-    Pattern pattern = Pattern.compile(passwordRegex);
-    Matcher matcher = pattern.matcher(password);
-    return matcher.matches();
+
+    //Method validateEmail to validate email using regex using lambda function
+    //return - Validate type
+    public static Validate validateEmail() {
+        return email -> email.matches("^[a-zA-Z-9]+([._+-]?[0-9A-Za-z]+)*@[a-zA-Z0-9]+.[a-zA-Z]{2,4}([.][a-z]{2})?$");
+    }
+
+    //method validateMobileNumber to validate mobile number using regex using lambda function
+    //return - Validate type
+    public static Validate validateMobileNumber() {
+        return mobileNumber -> mobileNumber.matches("^[0-9]{2}[\\s][0-9]{10}$");
+    }
+
+
+    // method validatePassword to validate password using regex using lambda function
+    //return - Validate type
+
+    public static Validate validatePassword() {
+        return password -> password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]*" +
+                "[\\@\\#\\^\\!\\$\\%\\&\\?][a-zA-Z0-9]*$");
     }
 }
