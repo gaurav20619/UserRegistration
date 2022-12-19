@@ -12,6 +12,8 @@ public class UserRegistration {
         System.out.println(userInputValidation.isValidFirstName(firstName) ? "Valid" : "In Valid");
         String lastName = scanner.next();
         System.out.println(userInputValidation.isValidLastName(lastName) ? "Valid" : "In Valid");
+        String email = scanner.next();
+        System.out.println(userInputValidation.isValidEmail(email) ? "Valid" : "In Valid");
         scanner.close();
 	}
 }
