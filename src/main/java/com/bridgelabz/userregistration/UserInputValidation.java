@@ -39,4 +39,11 @@ public class UserInputValidation {
 
         return matcher.matches();
     }
+    //Creating isValidMobileNumber method to validate the mobile format given by user using regex
+    public boolean isValidMobileNumber(String mobileNumber) {
+        String mobileNumberRegex = "^[1-9]{2}[\\s][0-9]{10}$";
+        Pattern pattern = Pattern.compile(mobileNumberRegex);
+        Matcher matcher = pattern.matcher(mobileNumber);
+        return matcher.matches();
+    }
 }
