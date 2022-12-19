@@ -13,5 +13,16 @@ public class UserInputValidation {
 	    Pattern pattern = Pattern.compile(firstNameRegex);
 	    Matcher matcher = pattern.matcher(firstName);
 	    return matcher.matches();
+    }
+        // Creating isValidLastName method to validate the last name given by user using regex
+	    public boolean isValidLastName(String lastName) {
+	        String firstNameRegex = "[A-Z]{1}[a-z]{2,}";
+
+	        Pattern pattern = Pattern.compile(firstNameRegex);
+
+	        Matcher matcher = pattern.matcher(lastName);
+
+	        return matcher.matches();
+
 	}
 }
