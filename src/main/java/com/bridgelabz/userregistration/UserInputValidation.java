@@ -46,12 +46,12 @@ public class UserInputValidation {
         Matcher matcher = pattern.matcher(mobileNumber);
         return matcher.matches();
     }
-    //Creating isValidPassword method to validate the password given by user using regex
-    public boolean isValidPassword(String password) {
-        System.out.println(password);
-        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$";
-        Pattern pattern = Pattern.compile(passwordRegex);
-        Matcher matcher = pattern.matcher(password);
-        return matcher.matches();
+   //Creating isValidPassword method to validate the password given by user using regex
+   public boolean isValidPassword(String password) {
+    System.out.println(password);
+    String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_+=-]).{8,}$";
+    Pattern pattern = Pattern.compile(passwordRegex);
+    Matcher matcher = pattern.matcher(password);
+    return matcher.matches();
     }
 }
