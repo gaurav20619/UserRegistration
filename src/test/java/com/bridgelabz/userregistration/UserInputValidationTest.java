@@ -42,4 +42,17 @@ public class UserInputValidationTest {
         boolean result = userInputValidation.isValidEmail("gaurav.619.gmail.com");
         Assert.assertEquals(false, result);
     }
+    @Test
+    public void givenMobileNum_WhenProper_ShouldReturnTrue() {
+        UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result = userInputValidation.isValidMobileNumber("91 9905459253");
+        Assert.assertEquals(true, result);
+    }
+
+    @Test
+    public void givenMobileNum_WhenNotProper_ShouldReturnFalse() {
+        UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result = userInputValidation.isValidMobileNumber("90-9905459253");
+        Assert.assertEquals(false, result);
+    }
 }
